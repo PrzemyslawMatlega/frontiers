@@ -1,21 +1,30 @@
 <template>
-  <div id="app">Thank you for considering participating to this paper</div>
+    <div id="app">
+        <ThankYouHeader />
+        <ResearchCard />
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'App',
+import ThankYouHeader from '@/components/ThankYouHeader'
+import ResearchCard from '@/components/ResearchCard'
 
-  components: {}
+export default {
+    name: 'App',
+
+    components: {
+        ThankYouHeader,
+        ResearchCard
+    }
 }
 </script>
 
 <style lang="scss">
 #app {
-  width: 100%;
-  padding: 20rem;
-  * {
-    box-sizing: border-box;
-  }
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 16rem;
+    background-color: var(--mercury);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 </style>
