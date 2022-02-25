@@ -1,11 +1,13 @@
 <template>
     <div id="app">
         <ThankYouHeader />
-        <ResearchCard />
+        <ResearchCard :metropolis-data="metropolisData" />
     </div>
 </template>
 
 <script>
+import metropolisData from '@/data/metropolisData.json'
+
 import ThankYouHeader from '@/components/ThankYouHeader'
 import ResearchCard from '@/components/ResearchCard'
 
@@ -15,6 +17,10 @@ export default {
     components: {
         ThankYouHeader,
         ResearchCard
+    },
+
+    beforeCreate() {
+        this.metropolisData = metropolisData
     }
 }
 </script>
