@@ -6,15 +6,16 @@ export const compareAffiliations = (firstAffilation, secondAffilation) => {
     const first = (({ id, ...rest }) => rest)(firstAffilation)
     const second = (({ id, ...rest }) => rest)(secondAffilation)
     /* eslint-enable no-unused-vars */
-
-    return Object.is(first, second)
+    return JSON.stringify(first) === JSON.stringify(second)
 }
 
 export const reduceAffiliationList = list => {
     return list.reduce((prev, curr) => {
+        console.log(prev, curr)
         const isAlreadyExist = prev.some(el => compareAffiliations(el, curr))
         if (!isAlreadyExist) {
             return [...prev, curr]
         }
+        return [...prev]
     }, [])
 }

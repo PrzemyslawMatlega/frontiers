@@ -35,7 +35,10 @@ export default {
                 })
                 .flat()
 
-            return reduceAffiliationList(affiliationsLits)
+            return reduceAffiliationList(affiliationsLits).map((el, index) => ({
+                ...el,
+                supscript: ++index
+            }))
         }
     }
 }
@@ -50,3 +53,4 @@ export default {
     background: var(--white);
 }
 </style>
+\
