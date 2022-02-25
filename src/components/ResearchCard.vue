@@ -2,11 +2,12 @@
     <div class="research-card">
         <span>type</span>
         <span>title</span>
+        {{ peopleLists }}
     </div>
 </template>
 
 <script>
-import { reduceAffiliationList } from '@/assets/affiliations'
+import { reduceAffiliationList, matchSupscript } from '@/assets/affiliations'
 
 export default {
     name: 'ResearchCard',
@@ -19,14 +20,39 @@ export default {
     },
 
     computed: {
-        peopleLists() {
+        peopleData() {
             const { editor, yourself, authors } = this.metropolisData
 
             return { editor, yourself, authors }
         },
 
+        peopleLists() {
+            const { peopleData, affiliations: placesList } = this
+
+            const setGroupAffiliations = group => {
+                return {
+                    ...group,
+                    affiliations: matchSupscript(placesList, group.affiliations)
+                }
+            }
+
+            const peopleLists = Object.entries(peopleData).map(
+                ([key, value]) => {
+                    let people
+
+                    if (Array.isArray(value)) {
+                        people = value.map(el => setGroupAffiliations(el))
+                    } else {
+                        people = setGroupAffiliations(value)
+                    }
+                    return { [key]: people }
+                }
+            )
+            return peopleLists
+        },
+
         affiliations() {
-            const affiliationsLits = Object.values(this.peopleLists)
+            const affiliationsList = Object.values(this.peopleData)
                 .map(el => {
                     if (Array.isArray(el)) {
                         return el.map(person => person.affiliations).flat()
@@ -35,7 +61,7 @@ export default {
                 })
                 .flat()
 
-            return reduceAffiliationList(affiliationsLits).map((el, index) => ({
+            return reduceAffiliationList(affiliationsList).map((el, index) => ({
                 ...el,
                 supscript: ++index
             }))
