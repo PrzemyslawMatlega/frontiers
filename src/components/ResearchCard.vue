@@ -1,15 +1,19 @@
 <template>
     <div class="research-card">
-        <span>type</span>
-        <span>title</span>
+        <h3 class="reasearch-text">{{ metropolisData.type }}</h3>
+        <h2 class="title">{{ metropolisData.title }}</h2>
         <div class="people">
             <PeopleList
                 v-for="{ name, data } in peopleLists"
                 :key="name"
                 :name="name"
                 :list="data"
+                :class="name"
             />
         </div>
+
+        <div style="margin: 8px 0">AFFILIATONS</div>
+        <h3>{{ metropolisData.journal }} | {{ metropolisData.section }}</h3>
     </div>
 </template>
 
@@ -69,8 +73,9 @@ export default {
                     }
                 }
             })
+            const { authors, editor, yourself } = peopleLists
 
-            return peopleLists
+            return [authors, editor, yourself]
         },
 
         affiliations() {
@@ -95,9 +100,23 @@ export default {
 <style lang="scss" scoped>
 .research-card {
     width: 65.9rem;
-    height: 29.9rem;
     margin: 0 auto;
     padding: 2.4rem 3.6rem;
     background: var(--white);
+
+    .reasearch-text {
+        color: var(--grey_55);
+        font-weight: var(--font-thin);
+    }
+
+    .title {
+        margin-bottom: 1.6rem;
+    }
+
+    .people {
+        .authors {
+            margin-bottom: 0.8rem;
+        }
+    }
 }
 </style>
