@@ -2,12 +2,21 @@
     <div class="research-card">
         <span>type</span>
         <span>title</span>
-        {{ peopleLists }}
+        <div class="people">
+            <PeopleList
+                v-for="{ name, data } in peopleLists"
+                :key="name"
+                :name="name"
+                :list="data"
+            />
+        </div>
     </div>
 </template>
 
 <script>
 import { reduceAffiliationList, matchSupscript } from '@/assets/affiliations'
+
+import PeopleList from '@/components/PeopleList'
 
 export default {
     name: 'ResearchCard',
@@ -17,6 +26,10 @@ export default {
             type: Object,
             required: true
         }
+    },
+
+    components: {
+        PeopleList
     },
 
     computed: {
@@ -36,18 +49,27 @@ export default {
                 }
             }
 
-            const peopleLists = Object.entries(peopleData).map(
-                ([key, value]) => {
-                    let people
+            let peopleLists = {}
+            const pepoleDataEntries = Object.entries(peopleData)
 
-                    if (Array.isArray(value)) {
-                        people = value.map(el => setGroupAffiliations(el))
-                    } else {
-                        people = setGroupAffiliations(value)
-                    }
-                    return { [key]: people }
+            pepoleDataEntries.forEach(([key, value]) => {
+                let people
+
+                if (Array.isArray(value)) {
+                    people = value.map(el => setGroupAffiliations(el))
+                } else {
+                    people = [setGroupAffiliations(value)]
                 }
-            )
+
+                peopleLists = {
+                    ...peopleLists,
+                    [key]: {
+                        name: key,
+                        data: people
+                    }
+                }
+            })
+
             return peopleLists
         },
 
@@ -79,4 +101,3 @@ export default {
     background: var(--white);
 }
 </style>
-\
