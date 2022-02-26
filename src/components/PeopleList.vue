@@ -25,7 +25,7 @@ export default {
 
     props: {
         list: {
-            type: Object,
+            type: [Object, Array],
             required: true
         },
 
@@ -37,9 +37,13 @@ export default {
 
     methods: {
         getSpacer(index) {
-            if (index === 0 || index === this.list.length - 1) {
+            const { list } = this
+
+            if (index === 0 && list.length > 1) {
+                return ',\u00A0'
+            } else if (index === 0 || index === list.length - 1) {
                 return ''
-            } else if (index === this.list.length - 2) {
+            } else if (index === list.length - 2) {
                 return ',\u00A0and\u00A0'
             } else {
                 return ',\u00A0'

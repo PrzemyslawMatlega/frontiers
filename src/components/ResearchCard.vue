@@ -25,15 +25,15 @@ import PeopleList from '@/components/PeopleList'
 export default {
     name: 'ResearchCard',
 
+    components: {
+        PeopleList
+    },
+
     props: {
         metropolisData: {
             type: Object,
             required: true
         }
-    },
-
-    components: {
-        PeopleList
     },
 
     computed: {
