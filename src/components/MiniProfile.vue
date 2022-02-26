@@ -1,7 +1,7 @@
 <template>
     <div class="mini-profile">
         <div class="content">
-            <div class="profile-info">
+            <div class="info">
                 <div class="full-name">{{ person.fullName }}</div>
                 <div class="affiliations">
                     <div
@@ -14,18 +14,18 @@
                 <div class="stats">
                     <div
                         class="stat"
-                        v-for="{ field, number } in personNumbers"
+                        v-for="{ field, number } in stats"
                         :key="field"
                     >
-                        <div class="number">{{ number | comaAtThousand }}</div>
+                        <div class="number">{{ number | comaAtThousands }}</div>
                         <div class="field">{{ field }}</div>
                     </div>
                 </div>
             </div>
-            <div class="profile-photo"></div>
-            <div class="profile-link">
+            <div class="photo"></div>
+            <div class="link">
                 svg
-                <a :href="person.profileUrl" _blank>view profile</a>
+                <a :href="person.profileUrl" target="_blank">view profile</a>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@ export default {
     },
 
     computed: {
-        personNumbers() {
+        stats() {
             const { publications, views, followers } = this.person
 
             return [
@@ -60,7 +60,7 @@ export default {
     },
 
     filters: {
-        comaAtThousand(value) {
+        comaAtThousands(value) {
             return value.toLocaleString('en-US')
         }
     }
@@ -81,7 +81,7 @@ export default {
         position: relative;
     }
 
-    .profile-info {
+    .info {
         margin-bottom: 1.6rem;
     }
 
@@ -128,7 +128,7 @@ export default {
         color: var(--08_air);
     }
 
-    .profile-photo {
+    .photo {
         position: absolute;
         right: 0;
         top: 0;
@@ -139,7 +139,7 @@ export default {
         border: 0.1rem solid var(--08_air);
     }
 
-    .profile-link {
+    .link {
         display: flex;
         justify-content: flex-end;
         align-items: center;

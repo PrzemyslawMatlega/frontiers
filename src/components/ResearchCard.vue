@@ -11,8 +11,7 @@
                 :class="name"
             />
         </div>
-
-        <div style="margin: 8px 0">AFFILIATONS</div>
+        <AffiliationList :affiliations="affiliations" class="list" />
         <h3>{{ metropolisData.journal }} | {{ metropolisData.section }}</h3>
     </div>
 </template>
@@ -21,12 +20,14 @@
 import { reduceAffiliationList, matchSupscript } from '@/assets/affiliations'
 
 import PeopleList from '@/components/PeopleList'
+import AffiliationList from '@/components/AffiliationList'
 
 export default {
     name: 'ResearchCard',
 
     components: {
-        PeopleList
+        PeopleList,
+        AffiliationList
     },
 
     props: {
@@ -103,6 +104,7 @@ export default {
     margin: 0 auto;
     padding: 2.4rem 3.6rem;
     background: var(--white);
+    box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
 
     .reasearch-text {
         color: var(--grey_55);
@@ -117,6 +119,10 @@ export default {
         .authors {
             margin-bottom: 0.8rem;
         }
+    }
+
+    .list {
+        margin: 0.8rem 0;
     }
 }
 </style>
