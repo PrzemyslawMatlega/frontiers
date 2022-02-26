@@ -2,8 +2,8 @@
     <div class="person-with-mini-profile">
         <span class="person">
             <span class="full-name" @click="isMiniProfileActive = true">
-                {{ person.fullName }}
-            </span>
+                {{ person.fullName }}</span
+            >
             <sup>{{ supscripts }}</sup>
         </span>
         <WithClickOutsideDetection
@@ -61,6 +61,7 @@ export default {
     .person {
         font-weight: var(--font-thin);
     }
+
     .full-name {
         text-decoration: underline;
         cursor: pointer;
