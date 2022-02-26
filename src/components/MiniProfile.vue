@@ -22,7 +22,17 @@
                     </div>
                 </div>
             </div>
-            <div class="photo"></div>
+            <div class="photo">
+                <img
+                    v-if="showPicture"
+                    :src="this.person.pictureUrl"
+                    :alt="person.fullName"
+                    @error="showPicture = !showPicture"
+                />
+                <div v-else class="initials">
+                    {{ person.fullName | initials }}
+                </div>
+            </div>
             <div class="link">
                 svg
                 <a :href="person.profileUrl" target="_blank">view profile</a>
@@ -33,6 +43,12 @@
 <script>
 export default {
     name: 'MiniProfile',
+
+    data() {
+        return {
+            showPicture: true
+        }
+    },
 
     props: {
         person: {
@@ -62,6 +78,13 @@ export default {
     filters: {
         comaAtThousands(value) {
             return value.toLocaleString('en-US')
+        },
+
+        initials(value) {
+            return value
+                .split(' ')
+                .map(el => el.charAt(0))
+                .join('')
         }
     }
 }
@@ -134,9 +157,29 @@ export default {
         top: 0;
         width: 5.6rem;
         height: 5.6rem;
-        border-radius: 99999999rem;
-        background: rgba(0, 160, 210, 0.05);
-        border: 0.1rem solid var(--08_air);
+
+        .initials,
+        img {
+            width: 100%;
+            border-radius: 99999999rem;
+        }
+
+        .initials {
+            @extend %flex-cc;
+            font-size: 1.8rem;
+            line-height: 2.5rem;
+            font-weight: var(--font-semi-bold);
+            color: var(--08_air);
+            height: 100%;
+            text-transform: uppercase;
+            background: rgba(0, 160, 210, 0.05);
+            border: 0.1rem solid var(--08_air);
+        }
+
+        img {
+            object-position: 50% 50%;
+            object-fit: cover;
+        }
     }
 
     .link {
