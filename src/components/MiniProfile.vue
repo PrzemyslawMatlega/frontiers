@@ -25,7 +25,7 @@
             <div class="photo">
                 <img
                     v-if="showPicture"
-                    :src="this.person.pictureUrl"
+                    :src="person.pictureUrl"
                     :alt="person.fullName"
                     @error="showPicture = !showPicture"
                 />
