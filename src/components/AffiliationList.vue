@@ -1,9 +1,6 @@
 <template>
     <div class="affiliation-list">
-        <div class="header" @click="isExpanded = !isExpanded">
-            Affiliations
-            <span> svg</span>
-        </div>
+        <div class="header" @click="isExpanded = !isExpanded">Affiliations</div>
         <ul class="list" v-show="isExpanded" :class="{ visible: isExpanded }">
             <li v-for="item in list" :key="item" v-html="item" class="item" />
         </ul>

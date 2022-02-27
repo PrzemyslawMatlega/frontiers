@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ThankYouHeader />
+        <AppHeader />
         <ResearchCard :metropolis-data="metropolisData" />
     </div>
 </template>
@@ -8,14 +8,14 @@
 <script>
 import metropolisData from '@/data/metropolisData.json'
 
-import ThankYouHeader from '@/components/ThankYouHeader'
+import AppHeader from '@/components/AppHeader'
 import ResearchCard from '@/components/ResearchCard'
 
 export default {
     name: 'App',
 
     components: {
-        ThankYouHeader,
+        AppHeader,
         ResearchCard
     },
 
@@ -31,6 +31,6 @@ export default {
     min-height: 100vh;
     padding-top: 16rem;
     background-color: var(--mercury);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0rem 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 </style>

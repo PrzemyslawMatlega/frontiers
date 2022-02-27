@@ -1,6 +1,5 @@
 <template>
-    <div class="thank-you-header">
-        <div style="text-align: center">svg</div>
+    <div class="app-header">
         <h1 class="header">
             Thank you for considering participating to this paper
         </h1>
@@ -9,12 +8,12 @@
 
 <script>
 export default {
-    name: 'ThankYouHeader'
+    name: 'AppHeader'
 }
 </script>
 
 <style lang="scss" scoped>
-.thank-you-header {
+.app-header {
     .header {
         text-align: center;
         margin: 2.6rem 0 2.4rem;
